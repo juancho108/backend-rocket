@@ -5,7 +5,7 @@ const cors = require("cors");
 
 const app = express();
 
-app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+app.use(cors());
 
 const server = require("http").Server(app);
 const io = require("socket.io")(server);
@@ -21,6 +21,12 @@ mongoose.connect(
   "mongodb+srv://juancho108:arsenal1@cluster0-rg5sh.mongodb.net/rocket?retryWrites=true",
   { useNewUrlParser: true }
 );
+
+app.all("/", function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
+});
 
 app.use((req, res, next) => {
   req.io = io;
