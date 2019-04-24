@@ -4,8 +4,8 @@ const path = require("path");
 const cors = require("cors");
 
 const app = express();
-app.use(cors());
-app.use((req, res, next) => {
+//app.use(cors());
+/* app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "http://localhost:3000");
   res.header(
     "Access-Control-Allow-Headers",
@@ -13,7 +13,7 @@ app.use((req, res, next) => {
   );
   res.header("Access-Control-Allow-Credentials", "true");
   return next();
-});
+}); */
 
 const server = require("http").Server(app);
 const io = require("socket.io")(server);
